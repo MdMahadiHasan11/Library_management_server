@@ -1,7 +1,7 @@
 import express, { Application, NextFunction, Request, Response } from "express";
-import { noteRoutes } from "./app/controllers/notes.controller";
-import { userRoutes } from "./app/controllers/users.controller";
 import cors from "cors";
+import { borrowBookRoutes } from "./app/modules/library/borrow/borrow.route";
+import { bookRoutes } from "./app/modules/library/book/book.route";
 const app: Application = express();
 
 cors({
@@ -12,8 +12,8 @@ cors({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/notes", noteRoutes);
-app.use("/users", userRoutes);
+app.use("/api/books", bookRoutes);
+app.use("/api/borrow", borrowBookRoutes);
 app.get("/", (req: Request, res: Response) => {
   res.send("Welcome serer is running!");
 });

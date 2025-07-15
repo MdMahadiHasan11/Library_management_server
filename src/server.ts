@@ -2,7 +2,8 @@
 import { Server as HttpServer } from "http";
 import app from "./app";
 import "dotenv/config";
-import { connectDB } from "./app/config/db";
+import { connectDB } from "./config/db";
+// import { connectDB } from "./config/db";
 
 const port = process.env.PORT || 5000;
 let server: HttpServer;
