@@ -1,6 +1,17 @@
+// utils/sendResponse.ts
 import { Response } from "express";
-import { IApiResponse } from "./sendResponseInterface";
 
-export const sendResponse = <T>(res: Response, payload: IApiResponse<T>) => {
-  res.status(200).json(payload);
+interface IResponse<T> {
+  statusCode: number;
+  success: boolean;
+  message: string;
+  data?: T;
+}
+
+export const sendResponse = <T>(res: Response, data: IResponse<T>) => {
+  res.status(data.statusCode).json({
+    success: data.success,
+    message: data.message,
+    data: data.data,
+  });
 };

@@ -1,30 +1,27 @@
-export type IGenre =
-  | "FICTION"
-  | "NON_FICTION"
-  | "SCIENCE"
-  | "HISTORY"
-  | "BIOGRAPHY"
-  | "FANTASY";
-
-export type IBookQuery = {
-  filter?: IGenre;
-  sortBy?: string;
-  sort?: "asc" | "desc";
-  limit?: number;
-  page?: number;
-};
-export interface IBookMethods {
-  updateAvailability(): Promise<IBookDocument>;
-}
-
-export type IBook = {
+export interface IBook {
   title: string;
   author: string;
-  genre: IGenre;
+  genre:
+    | "FICTION"
+    | "NON_FICTION"
+    | "SCIENCE"
+    | "HISTORY"
+    | "BIOGRAPHY"
+    | "FANTASY";
   isbn: string;
   description?: string;
   copies: number;
-  available: boolean;
-};
+  available?: boolean;
+}
 
-export type IBookDocument = IBook & Document & IBookMethods;
+export interface IBookDocument extends IBook, Document {
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface IBookQuery {
+  filter?: string;
+  sortBy?: string;
+  sort?: "asc" | "desc";
+  limit?: string;
+}

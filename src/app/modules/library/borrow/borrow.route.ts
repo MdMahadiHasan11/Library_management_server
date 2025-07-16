@@ -3,5 +3,5 @@ import express from "express";
 
 export const borrowBookRoutes = express.Router();
 
-// borrowBookRoutes.post("/");
-// borrowBookRoutes.get("/");
+borrowBookRoutes.post("/");
+borrowBookRoutes.get("/");
