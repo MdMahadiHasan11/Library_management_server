@@ -2,15 +2,15 @@ import { Borrow } from "./borrow.model";
 import { Book } from "../book/book.model";
 
 const borrowBook = async (bookId: string, quantity: number, dueDate: Date) => {
-  const targetBook = await Book.findById(bookId);
-  if (!targetBook) throw new Error("Book not found");
+  const book = await Book.findById(bookId);
+  if (!book) throw new Error("Book not found");
 
-  if (targetBook.copies < quantity) {
+  if (book.copies < quantity) {
     throw new Error("Not enough copies available");
   }
 
-  targetBook.copies -= quantity;
-  await targetBook.updateAvailability();
+  book.copies -= quantity;
+  await book.updateAvailability();
 
   const borrowed = await Borrow.create({ book: bookId, quantity, dueDate });
   return borrowed;
